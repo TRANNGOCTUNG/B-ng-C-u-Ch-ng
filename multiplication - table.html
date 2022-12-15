@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            width:100%;
+            border:10px solid rebeccapurple;
+        }
+        table{
+
+            background-image: url("https://dean2020.edu.vn/wp-content/uploads/2021/04/anh-nen-trang-34.jpg");
+            background-repeat:no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+</body>
+<script>
+    let multiplication,i,j;
+    multiplication = "<table border='1' cellspacing='1' cellpadding='20'>";
+    for(i = 1; i <= 10; i++){
+        multiplication += "<tr>";
+        for(j = 1; j <= 10; j++) {
+            multiplication += "<td>" + j + "x" + i + "=" + i * j + "</td>";
+        }
+        multiplication += "</tr>";
+    }
+    multiplication += "</table>";
+    document.write(multiplication);
+</script>
+</html>
