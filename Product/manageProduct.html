@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="manageProduct.css">
+
+</head>
+<body>
+<form action="http://form.png" method="get">
+
+    <label for="name">Tên Hoa</label><br>
+    <input type="text" id="name" placeholder="Tên hoa"/><br>
+    <label for="price">Giá</label><br>
+    <input type="text" id="price" placeholder=" Giá sản phẩm"/><br>
+    <label for="number">Số lượng</label><br>
+    <input type="text" id="number" placeholder="Số lượng"/><br>
+    <label for="img">Link ảnh</label><br>
+    <input type="text" id="img" placeholder="Link ảnh"/>
+</form>
+<br>
+<button type="button" onclick="add()">Add</button><br><br>
+<span id="addProduct"></span>
+<br><br>
+<table border="2px" id="listProduct">
+    <tr>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Number</td>
+        <td>Img</td>
+    </tr>
+</table>
+</body>
+<script>
+    class Product{
+       constructor( name, price, number, img) {
+           this.name = name;
+           this.price = price;
+           this.number = number;
+           this.img = img;
+       }
+       getName(){
+           return this.name;
+       }
+       getPrice(){
+           return this.price;
+       }
+       getNumber(){
+           return this.number;
+       }
+       getImg(){
+           return this.img;
+       }
+       setName(value){
+           this.name = value;
+       }
+       setPrice(value){
+           this.price = value;
+       }
+       setNumber(value){
+           this.number = value;
+       }
+       setImg(value){
+           this.img = value;
+       }
+    }
+    let Products = [
+        new Product("Hoa sen",10000,10,'https://th.bing.com/th/id/OIP.DjTsgeKsRv0uD5oCJB-rRQHaEo?pid=ImgDet&rs=1'),
+        new Product("Hoa anh đào",100000,10,'https://th.bing.com/th/id/OIP.4pwaVb5dVNcagxrzV4zkQgHaEK?pid=ImgDet&rs=1'),
+        new Product("Hoa dây ",15000,10,'https://th.bing.com/th/id/OIP.YmoHKqvZ91coXMHt_sIL1QHaFj?pid=ImgDet&rs=1')
+    ];
+    function displayProduct(){
+        let number ="";
+        let numberProduct = 0;
+        for(let i = 0; i < Products.length; i++){
+            numberProduct += Products[i].number;
+            number += " <tr>" +
+                "        <td>"+Products[i].name +"</td>" +
+                "        <td>"+Products[i].price+"</td>" +
+                "        <td>"+Products[i].number+"</td>" +
+                "        <td>'<img src="+Products[i].img+">'</td>" +
+                "        <td><button onclick='edit(" + i + ")'>Edit</button></td>" +
+                "        <td><button onclick='deleteByIndex(" + i +")'>Delete</button></td>" +
+                "    </tr> "
+        }
+        document.getElementById("listProduct").innerHTML = number;
+        document.getElementById("addProduct").innerHTML = "Số lượng hoa là: " + numberProduct;
+    }
+    displayProduct();
+
+    function add() {
+        let name = document.getElementById("name").value;
+        let price = document.getElementById("price").value;
+        let number = document.getElementById("number").value;
+        let img = document.getElementById("img").value;
+        let newP = new Product(name,price,Number(number),img);
+        Products.push(newP);
+        displayProduct();
+    }
+    function edit(index){
+        let name = prompt("Tên Hoa")
+        let price = prompt("Giá")
+        let number = prompt("Số lượng")
+        let img = prompt("Link ảnh")
+        let newP1 = new Product(name,price,number,img);
+        Products[index] = newP1;
+        displayProduct()
+    }
+
+    function deleteByIndex(index){
+        Products.splice(index,1);
+        displayProduct();
+    }
+
+</script>
+
+</html>
